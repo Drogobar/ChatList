@@ -1,0 +1,2 @@
+# ChatList
+Учебный проект ChatList
