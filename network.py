@@ -10,8 +10,9 @@ from typing import Dict, Optional, Any
 from dotenv import load_dotenv
 import requests
 
-# Загружаем переменные окружения из .env
-load_dotenv()
+# Загружаем переменные окружения из .env и .env.local
+load_dotenv()  # Загружает .env
+load_dotenv('.env.local')  # Загружает .env.local (если существует)
 
 
 class APIError(Exception):

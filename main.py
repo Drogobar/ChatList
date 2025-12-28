@@ -19,6 +19,7 @@ from network import NetworkClient, APIError
 from ui_models_dialog import ModelsDialog
 from ui_prompts_dialog import PromptsDialog
 from ui_results_dialog import ResultsDialog
+from ui_markdown_viewer import MarkdownViewerDialog
 
 
 class RequestThread(QThread):
@@ -153,13 +154,16 @@ class MainWindow(QMainWindow):
         
         # Таблица результатов
         self.results_table = QTableWidget()
-        self.results_table.setColumnCount(3)
-        self.results_table.setHorizontalHeaderLabels(["Модель", "Ответ", "Выбрать"])
+        self.results_table.setColumnCount(4)
+        self.results_table.setHorizontalHeaderLabels(["Модель", "Ответ", "Выбрать", "Действия"])
         self.results_table.horizontalHeader().setStretchLastSection(False)
         self.results_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
         self.results_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.results_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        self.results_table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeToContents)
         self.results_table.setAlternatingRowColors(True)
+        # Включаем автоматическое изменение размера строк по содержимому
+        self.results_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         results_layout.addWidget(self.results_table)
         
         splitter.addWidget(results_widget)
@@ -239,7 +243,7 @@ class MainWindow(QMainWindow):
             for model in models:
                 checkbox = QCheckBox(model['name'])
                 checkbox.setChecked(True)
-                checkbox.setData(model['id'])
+                # Сохраняем ID модели в словаре
                 self.model_checkboxes[model['id']] = checkbox
                 self.models_list_layout.addWidget(checkbox)
         
@@ -382,10 +386,24 @@ class MainWindow(QMainWindow):
             # Название модели
             self.results_table.setItem(row, 0, QTableWidgetItem(result['model_name']))
             
-            # Текст ответа
-            response_item = QTableWidgetItem(result['response'])
-            response_item.setFlags(response_item.flags() & ~Qt.ItemIsEditable)
-            self.results_table.setItem(row, 1, response_item)
+            # Текст ответа - многострочный с переносом текста
+            # Используем QTextEdit для многострочного отображения
+            text_widget = QTextEdit()
+            text_widget.setPlainText(result['response'])
+            text_widget.setReadOnly(True)
+            text_widget.setFrameStyle(0)  # Убираем рамку
+            # Устанавливаем стиль для лучшего отображения
+            text_widget.setStyleSheet("QTextEdit { border: none; background-color: transparent; }")
+            # Устанавливаем минимальную высоту в зависимости от количества строк
+            lines = result['response'].count('\n') + 1
+            # Вычисляем примерную высоту: минимум 80px, максимум 400px
+            # Примерно 20-25 пикселей на строку
+            estimated_height = max(80, min(400, lines * 22 + 40))
+            text_widget.setMinimumHeight(estimated_height)
+            text_widget.setMaximumHeight(400)  # Максимальная высота с прокруткой
+            # Включаем перенос слов
+            text_widget.setLineWrapMode(QTextEdit.WidgetWidth)
+            self.results_table.setCellWidget(row, 1, text_widget)
             
             # Чекбокс выбора
             checkbox = QCheckBox()
@@ -394,11 +412,32 @@ class MainWindow(QMainWindow):
                 lambda state, r=row: self.on_result_selection_changed(r, state == Qt.Checked)
             )
             self.results_table.setCellWidget(row, 2, checkbox)
+            
+            # Кнопка "Открыть" для просмотра в Markdown
+            open_button = QPushButton("Открыть")
+            open_button.clicked.connect(
+                lambda checked, r=row: self.open_markdown_viewer(r)
+            )
+            self.results_table.setCellWidget(row, 3, open_button)
+            
+            # Устанавливаем высоту строки для лучшего отображения
+            self.results_table.setRowHeight(row, estimated_height)
     
     def on_result_selection_changed(self, row: int, selected: bool):
         """Обработчик изменения выбора результата."""
         if 0 <= row < len(self.temp_results):
             self.temp_results[row]['selected'] = selected
+    
+    def open_markdown_viewer(self, row: int):
+        """Открыть диалог просмотра ответа в формате Markdown."""
+        if 0 <= row < len(self.temp_results):
+            result = self.temp_results[row]
+            dialog = MarkdownViewerDialog(
+                result['model_name'],
+                result['response'],
+                self
+            )
+            dialog.exec_()
     
     def save_selected_results(self):
         """Сохранить выбранные результаты в БД."""
