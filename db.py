@@ -268,6 +268,27 @@ class Database:
         finally:
             cursor.close()
     
+    def delete_prompt(self, prompt_id: int) -> bool:
+        """
+        Удалить промт из базы данных.
+        
+        Args:
+            prompt_id: ID промта
+        
+        Returns:
+            True если удаление успешно
+        """
+        cursor = self.conn.cursor()
+        try:
+            cursor.execute("DELETE FROM prompts WHERE id = ?", (prompt_id,))
+            self.conn.commit()
+            return cursor.rowcount > 0
+        except sqlite3.Error as e:
+            self.conn.rollback()
+            raise Exception(f"Ошибка удаления промта: {e}")
+        finally:
+            cursor.close()
+    
     # ========== Методы для работы с таблицей models ==========
     
     def add_model(self, name: str, api_url: str, api_id: str, model_type: str, 
