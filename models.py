@@ -187,3 +187,4 @@ class ModelManager:
         if model_type.lower() not in valid_types:
             raise ValueError(f"Тип модели должен быть одним из: {', '.join(valid_types)}")
 
+

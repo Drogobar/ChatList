@@ -268,6 +268,45 @@ class Database:
         finally:
             cursor.close()
     
+    def update_prompt(self, prompt_id: int, prompt: Optional[str] = None, 
+                     tags: Optional[str] = None) -> bool:
+        """
+        Обновить промт в базе данных.
+        
+        Args:
+            prompt_id: ID промта
+            prompt: Новый текст промта (опционально)
+            tags: Новые теги (опционально)
+        
+        Returns:
+            True если обновление успешно
+        """
+        cursor = self.conn.cursor()
+        try:
+            updates = []
+            params = []
+            
+            if prompt is not None:
+                updates.append("prompt = ?")
+                params.append(prompt)
+            if tags is not None:
+                updates.append("tags = ?")
+                params.append(tags)
+            
+            if not updates:
+                return False
+            
+            params.append(prompt_id)
+            sql = f"UPDATE prompts SET {', '.join(updates)} WHERE id = ?"
+            cursor.execute(sql, params)
+            self.conn.commit()
+            return cursor.rowcount > 0
+        except sqlite3.Error as e:
+            self.conn.rollback()
+            raise Exception(f"Ошибка обновления промта: {e}")
+        finally:
+            cursor.close()
+    
     def delete_prompt(self, prompt_id: int) -> bool:
         """
         Удалить промт из базы данных.

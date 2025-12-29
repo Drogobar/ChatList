@@ -47,3 +47,4 @@ except Exception as e:
     input("Нажмите Enter для выхода...")
     sys.exit(1)
 
+

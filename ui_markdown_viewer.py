@@ -225,3 +225,4 @@ class MarkdownViewerDialog(QDialog):
         from PyQt5.QtWidgets import QMessageBox
         QMessageBox.information(self, "Успех", "Текст скопирован в буфер обмена")
 
+
