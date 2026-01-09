@@ -24,6 +24,7 @@ from ui_results_dialog import ResultsDialog
 from ui_markdown_viewer import MarkdownViewerDialog
 from ui_prompt_improver_dialog import PromptImproverDialog
 from ui_settings_dialog import SettingsDialog
+from version import __version__
 
 
 class RequestThread(QThread):
@@ -105,7 +106,7 @@ class MainWindow(QMainWindow):
     
     def init_ui(self):
         """Инициализация интерфейса."""
-        self.setWindowTitle("ChatList - Сравнение ответов нейросетей")
+        self.setWindowTitle(f"ChatList v{__version__} - Сравнение ответов нейросетей")
         self.setGeometry(100, 100, 1200, 800)
         
         # Устанавливаем иконку приложения
@@ -859,7 +860,7 @@ class MainWindow(QMainWindow):
             "• AI-ассистент для улучшения промтов\n"
             "• Экспорт результатов в Markdown и JSON\n"
             "• Настройка темы и размера шрифта\n\n"
-            "Версия: 1.0\n\n"
+            f"Версия: {__version__}\n\n"
             "Разработано с использованием:\n"
             "• Python 3.11+\n"
             "• PyQt5\n"
@@ -900,7 +901,7 @@ def main():
         sys.exit(app.exec_())
     except Exception as e:
         import traceback
-        print(f"Ошибка при запуске приложения: {e}")
+        print(f"ChatList v{__version__} - Ошибка при запуске приложения: {e}")
         traceback.print_exc()
         input("Нажмите Enter для выхода...")
         sys.exit(1)

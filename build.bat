@@ -7,6 +7,6 @@ echo Создание исполняемого файла...
 pyinstaller MinimalPyQtApp.spec
 
 echo.
-echo Готово! Исполняемый файл находится в папке dist\MinimalPyQtApp.exe
+echo Готово! Исполняемый файл находится в папке dist\ChatList-*.exe
 pause
 
