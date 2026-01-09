@@ -32,7 +32,7 @@
    - Дождитесь завершения (зеленая галочка)
 
 4. Откройте ваш сайт:
-   - URL: `https://ВАШ_USERNAME.github.io/ChatList/`
+   - URL: `https://Drogobar.github.io/ChatList/`
    - Или: `https://ВАШ_ORGANIZATION.github.io/ChatList/`
 
 ## Способ 2: Ручная публикация через ветку gh-pages
@@ -81,7 +81,7 @@ git checkout main
 2. Настройте DNS записи у вашего регистратора:
    - Тип: `CNAME`
    - Имя: `www` (или `@`)
-   - Значение: `ВАШ_USERNAME.github.io`
+   - Значение: `Drogobar.github.io`
 
 3. В GitHub → Settings → Pages добавьте домен
 

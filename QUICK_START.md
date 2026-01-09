@@ -2,18 +2,13 @@
 
 ## 🚀 Быстрая публикация (5 минут)
 
-### 1. Подготовка (1 минута)
-
-Замените `YOUR_USERNAME` на ваш GitHub username в файле:
-- `docs/index.html` (все ссылки)
-
-### 2. Создание репозитория (2 минуты)
+### 1. Создание репозитория (2 минуты)
 
 ```powershell
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USERNAME/ChatList.git
+git remote add origin https://github.com/Drogobar/ChatList.git
 git branch -M main
 git push -u origin main
 ```
@@ -55,9 +50,9 @@ GitHub Actions автоматически:
 
 После выполнения шагов:
 
-1. **Релиз**: https://github.com/YOUR_USERNAME/ChatList/releases
-2. **Сайт**: https://YOUR_USERNAME.github.io/ChatList/
-3. **Actions**: https://github.com/YOUR_USERNAME/ChatList/actions
+1. **Релиз**: https://github.com/Drogobar/ChatList/releases
+2. **Сайт**: https://Drogobar.github.io/ChatList/
+3. **Actions**: https://github.com/Drogobar/ChatList/actions
 
 ## 🆘 Проблемы?
 

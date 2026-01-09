@@ -6,7 +6,7 @@
 
 ### Установка
 
-1. Скачайте последнюю версию с [GitHub Releases](https://github.com/YOUR_USERNAME/ChatList/releases)
+1. Скачайте последнюю версию с [GitHub Releases](https://github.com/Drogobar/ChatList/releases)
 2. Запустите `ChatList-Setup-1.0.0.exe` для установки
 3. Или используйте портативную версию `ChatList-1.0.0.exe`
 
@@ -67,10 +67,10 @@ pip install -r requirements.txt
 
 ## 🔗 Ссылки
 
-- [Веб-сайт](https://YOUR_USERNAME.github.io/ChatList/)
-- [GitHub](https://github.com/YOUR_USERNAME/ChatList)
-- [Релизы](https://github.com/YOUR_USERNAME/ChatList/releases)
-- [Сообщить об ошибке](https://github.com/YOUR_USERNAME/ChatList/issues)
+- [Веб-сайт](https://Drogobar.github.io/ChatList/)
+- [GitHub](https://github.com/Drogobar/ChatList)
+- [Релизы](https://github.com/Drogobar/ChatList/releases)
+- [Сообщить об ошибке](https://github.com/Drogobar/ChatList/issues)
 
 ## Версия
 

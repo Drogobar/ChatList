@@ -32,8 +32,8 @@
 - **Портативная версия**: `ChatList-1.0.0.exe`
 
 ### 🔗 Ссылки
-- [Документация](https://github.com/ВАШ_USERNAME/ChatList)
-- [Сообщить об ошибке](https://github.com/ВАШ_USERNAME/ChatList/issues)
+- [Документация](https://github.com/Drogobar/ChatList)
+- [Сообщить об ошибке](https://github.com/Drogobar/ChatList/issues)
 ```
 
 ## Пример для первого релиза
@@ -60,7 +60,7 @@
 - Интернет-соединение для работы с AI моделями
 
 ### 🔗 Ссылки
-- [Документация](https://github.com/ВАШ_USERNAME/ChatList)
-- [Сообщить об ошибке](https://github.com/ВАШ_USERNAME/ChatList/issues)
-- [Веб-сайт](https://ВАШ_USERNAME.github.io/ChatList/)
+- [Документация](https://github.com/Drogobar/ChatList)
+- [Сообщить об ошибке](https://github.com/Drogobar/ChatList/issues)
+- [Веб-сайт](https://Drogobar.github.io/ChatList/)
 ```

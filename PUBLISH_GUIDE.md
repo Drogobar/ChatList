@@ -31,19 +31,10 @@ git add .
 git commit -m "Initial commit: ChatList v1.0.0"
 
 # Добавьте удаленный репозиторий
-git remote add origin https://github.com/ВАШ_USERNAME/ChatList.git
+git remote add origin https://github.com/Drogobar/ChatList.git
 git branch -M main
 git push -u origin main
 ```
-
-### Шаг 1.3: Обновление ссылок в файлах
-
-**Важно!** Замените `ВАШ_USERNAME` на ваш GitHub username в следующих файлах:
-
-1. `docs/index.html` - все ссылки на GitHub
-2. `GITHUB_RELEASE.md` - инструкции
-3. `GITHUB_PAGES.md` - инструкции
-4. `RELEASE_NOTES_TEMPLATE.md` - шаблон релиза
 
 ---
 
@@ -163,13 +154,13 @@ git push origin main
 
 1. Подождите 1-2 минуты
 2. Проверьте Actions → должен быть workflow "Deploy GitHub Pages"
-3. Откройте сайт: `https://ВАШ_USERNAME.github.io/ChatList/`
+3. Откройте сайт: `https://Drogobar.github.io/ChatList/`
 
 ### Шаг 4.4: Обновление ссылок в лендинге
 
 Отредактируйте `docs/index.html`:
 
-1. Замените все `ВАШ_USERNAME` на ваш username
+1. Обновите ссылки на скачивание (используйте правильные версии)
 2. Обновите ссылки на скачивание (используйте правильные версии)
 3. Commit и push:
    ```powershell
@@ -204,7 +195,7 @@ GitHub Actions автоматически обновит сайт через 1-2
 
 Перед публикацией убедитесь:
 
-- [ ] Все ссылки в `docs/index.html` обновлены (заменен `ВАШ_USERNAME`)
+- [ ] Все ссылки в `docs/index.html` обновлены (заменен `Drogobar`)
 - [ ] Версия в `version.py` соответствует релизу
 - [ ] Версия в `ChatList.iss` соответствует релизу
 - [ ] GitHub Actions секрет `GITHUB_TOKEN` добавлен
